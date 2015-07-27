@@ -5,10 +5,29 @@
 			<%= link_to "Recipes", recipes_path, class: "btn btn-default btn-warning" %>
 		</div>
 		<div class="nav_item">
-			<%= link_to "link 1", "", class: "btn btn-default btn-warning" %>
+			<%= link_to "Chefs", chefs_path, class: "btn btn-default btn-warning" %>
 		</div>
-		<div class="nav_item">
+		<% if logged_in? %>
+			<div class="nav_item">
 				<%= link_to "New", new_recipe_path, class: "btn btn-default btn-warning" %>
-		</div>
+			</div>
+			<div class="nav_item">
+				<div class="dropdown">
+				  <button class="btn btn-default btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				   	<%= current_user.chefname %><span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <li><%= link_to "View Profile", chef_path(current_user) %></li>
+				    <li><%= link_to "Edit Profile", edit_chef_path(current_user) %></li>
+				    <li class="divider"></li>
+				    <li><%= link_to "Logout", logout_path %></li>
+				  </ul>
+				</div>
+			</div>
+		<% else %>
+			<div class="nav_item">
+				<%= link_to "Log In", login_path, class: "btn btn-warning" %>
+			</div>
+		<% end %>
 	</div>
 </header>

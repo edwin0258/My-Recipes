@@ -10,6 +10,14 @@ resources :recipes do
   end
 end
 
+resources :chefs, except: [:new]
+
+get '/register', to: 'chefs#new'
+
+get '/login', to: 'sessions#new'
+post '/login', to: 'sessions#create'
+get '/logout', to: 'sessions#destroy'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
