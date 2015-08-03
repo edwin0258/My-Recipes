@@ -18,6 +18,8 @@ get '/login', to: 'sessions#new'
 post '/login', to: 'sessions#create'
 get '/logout', to: 'sessions#destroy'
 
+resources :styles, only: [:new, :create, :show]
+resources :ingredients, only: [:new, :create, :show]
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

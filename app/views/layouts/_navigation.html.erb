@@ -1,6 +1,46 @@
 <header class="navbar navbar-fixed-top navbar-default">
 	<div class="container">
 		<%= link_to "myRecipes", root_path, class: "btn btn-lg btn-success", id: "logo" %>
+		<ul class="nav-ul-item" style="list-style-type:none;">
+				<li class="dropdown">
+				  <button class="btn btn-default btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				   	Styles<span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <% Style.all.each do |style| %>
+				    	<li><%= link_to style.name, style_path(style) %></li>
+				    <% end %>
+				    <% if logged_in? %>
+				    	<li class="divider"></li>
+				    	<li>
+				    		<%= link_to(new_style_path) do %>
+				    		New Style
+				    		<% end %>
+				    	</li>
+				    <% end %>
+				  </ul>
+				</li>
+			</ul>
+			<ul class="nav-ul-item" style="list-style-type:none;">
+				<li class="dropdown">
+				  <button class="btn btn-default btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				   	Ingredients<span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <% Ingredient.all.each do |ingredient| %>
+				    	<li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+				    <% end %>
+				    <% if logged_in? %>
+				    	<li class="divider"></li>
+				    	<li>
+				    		<%= link_to(new_ingredient_path) do %>
+				    		New Ingredient
+				    		<% end %>
+				    	</li>
+				    <% end %>
+				  </ul>
+				</li>
+			</ul>
 		<div class="nav_item">
 			<%= link_to "Recipes", recipes_path, class: "btn btn-default btn-warning" %>
 		</div>
@@ -11,8 +51,8 @@
 			<div class="nav_item">
 				<%= link_to "New", new_recipe_path, class: "btn btn-default btn-warning" %>
 			</div>
-			<div class="nav_item">
-				<div class="dropdown">
+			<ul class="nav-ul-item" style="list-style-type:none;">
+				<li class="dropdown">
 				  <button class="btn btn-default btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				   	<%= current_user.chefname %><span class="caret"></span>
 				  </button>
@@ -22,8 +62,8 @@
 				    <li class="divider"></li>
 				    <li><%= link_to "Logout", logout_path %></li>
 				  </ul>
-				</div>
-			</div>
+				</li>
+			</ul>
 		<% else %>
 			<div class="nav_item">
 				<%= link_to "Log In", login_path, class: "btn btn-warning" %>
